@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Math Kids - Belajar Matematika</string>
+    <string name="welcome_title">Math Kids</string>
+    <string name="welcome_subtitle">Belajar Matematika Seru!</string>
+    <string name="btn_play">Mulai Bermain</string>
+    <string name="btn_high_score">Skor Tertinggi</string>
+    <string name="choose_level">Pilih Level</string>
+    <string name="level_easy">Mudah</string>
+    <string name="level_medium">Sedang</string>
+    <string name="level_hard">Sulit</string>
+    <string name="level_easy_desc">Penjumlahan (1-10)</string>
+    <string name="level_medium_desc">Penjumlahan &amp; Pengurangan (1-50)</string>
+    <string name="level_hard_desc">Perkalian &amp; Pembagian (1-12)</string>
+    <string name="question_number">Soal %1$d dari %2$d</string>
+    <string name="score_label">Skor: %1$d</string>
+    <string name="time_label">Waktu: %1$d</string>
+    <string name="correct_answer">Benar! Hebat!</string>
+    <string name="wrong_answer">Salah! Jawaban: %1$d</string>
+    <string name="result_title">Hasil Permainan</string>
+    <string name="result_score">Skor Kamu: %1$d/%2$d</string>
+    <string name="result_perfect">Sempurna! Kamu Jenius!</string>
+    <string name="result_great">Bagus Sekali!</string>
+    <string name="result_good">Kerja Bagus!</string>
+    <string name="result_try_again">Ayo Coba Lagi!</string>
+    <string name="btn_play_again">Main Lagi</string>
+    <string name="btn_home">Kembali</string>
+    <string name="high_score_title">Skor Tertinggi</string>
+    <string name="no_high_score">Belum ada skor</string>
+    <string name="stars_earned">Bintang: %1$d</string>
+</resources>

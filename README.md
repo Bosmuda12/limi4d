@@ -1,55 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>App Simple</title>
-</head>
-<body>
+# limi4d
 
-<h2>Login Sederhana</h2>
+A simple client-side balance demo app (Indonesian: "Login Sederhana").
 
-<input id="username" placeholder="Username"><br><br>
-<button onclick="login()">Login</button>
+## Usage
 
-<h3 id="saldo">Saldo: -</h3>
+Open `limit4d` in a browser. Enter a username (alphanumeric/underscore, max 30 chars) and click **Login**. Use the **Deposit** and **Withdraw** buttons to adjust the balance.
 
-<br>
-<button onclick="deposit()">Deposit 10.000</button>
-<button onclick="withdraw()">Withdraw 10.000</button>
+Balances are stored in `localStorage` and persist across page reloads in the same browser.
 
-<script>
-let user = "";
+## Limitations
 
-function login() {
-  user = document.getElementById("username").value;
-
-  if (!localStorage.getItem(user)) {
-    localStorage.setItem(user, 100000);
-  }
-
-  updateSaldo();
-}
-
-function updateSaldo() {
-  let saldo = localStorage.getItem(user);
-  document.getElementById("saldo").innerText = "Saldo: Rp " + saldo;
-}
-
-function deposit() {
-  let saldo = parseInt(localStorage.getItem(user));
-  saldo += 10000;
-  localStorage.setItem(user, saldo);
-  updateSaldo();
-}
-
-function withdraw() {
-  let saldo = parseInt(localStorage.getItem(user));
-  if (saldo < 10000) return alert("Saldo kurang!");
-
-  saldo -= 10000;
-  localStorage.setItem(user, saldo);
-  updateSaldo();
-}
-</script>
-
-</body>
-</html>
+This is a client-side-only demo. There is no server, no real authentication, and no tamper-proof storage. Do not use it for real financial operations.

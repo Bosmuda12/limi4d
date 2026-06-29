@@ -1,13 +1,17 @@
 let user = "";
 
 function login(storage, document) {
-  user = document.getElementById("username").value;
+  const name = document.getElementById("username").value;
+  if (!name) return false;
+
+  user = name;
 
   if (!storage.getItem(user)) {
     storage.setItem(user, 100000);
   }
 
   updateSaldo(storage, document);
+  return true;
 }
 
 function updateSaldo(storage, document) {
@@ -17,14 +21,17 @@ function updateSaldo(storage, document) {
 
 function deposit(storage, document) {
   let saldo = parseInt(storage.getItem(user));
+  if (isNaN(saldo)) return false;
+
   saldo += 10000;
   storage.setItem(user, saldo);
   updateSaldo(storage, document);
+  return true;
 }
 
 function withdraw(storage, document) {
   let saldo = parseInt(storage.getItem(user));
-  if (saldo < 10000) return false;
+  if (isNaN(saldo) || saldo < 10000) return false;
 
   saldo -= 10000;
   storage.setItem(user, saldo);

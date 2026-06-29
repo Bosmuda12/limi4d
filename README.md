@@ -19,34 +19,79 @@
 <script>
 let user = "";
 
-function login() {
-  user = document.getElementById("username").value;
+function isLoggedIn() {
+  if (!user) {
+    alert("Silakan login terlebih dahulu!");
+    return false;
+  }
+  return true;
+}
 
-  if (!localStorage.getItem(user)) {
-    localStorage.setItem(user, 100000);
+function readSaldo() {
+  var raw = localStorage.getItem(user);
+  var saldo = parseInt(raw, 10);
+  if (isNaN(saldo)) {
+    localStorage.setItem(user, 0);
+    return 0;
+  }
+  return saldo;
+}
+
+function login() {
+  var input = document.getElementById("username").value.trim();
+  if (!input) {
+    alert("Username tidak boleh kosong!");
+    return;
+  }
+
+  user = input;
+
+  try {
+    if (!localStorage.getItem(user)) {
+      localStorage.setItem(user, 100000);
+    }
+  } catch (e) {
+    alert("Gagal mengakses penyimpanan: " + e.message);
+    return;
   }
 
   updateSaldo();
 }
 
 function updateSaldo() {
-  let saldo = localStorage.getItem(user);
+  if (!isLoggedIn()) return;
+  var saldo = readSaldo();
   document.getElementById("saldo").innerText = "Saldo: Rp " + saldo;
 }
 
 function deposit() {
-  let saldo = parseInt(localStorage.getItem(user));
+  if (!isLoggedIn()) return;
+  var saldo = readSaldo();
   saldo += 10000;
-  localStorage.setItem(user, saldo);
+  try {
+    localStorage.setItem(user, saldo);
+  } catch (e) {
+    alert("Gagal menyimpan saldo: " + e.message);
+    return;
+  }
   updateSaldo();
 }
 
 function withdraw() {
-  let saldo = parseInt(localStorage.getItem(user));
-  if (saldo < 10000) return alert("Saldo kurang!");
+  if (!isLoggedIn()) return;
+  var saldo = readSaldo();
+  if (saldo < 10000) {
+    alert("Saldo kurang!");
+    return;
+  }
 
   saldo -= 10000;
-  localStorage.setItem(user, saldo);
+  try {
+    localStorage.setItem(user, saldo);
+  } catch (e) {
+    alert("Gagal menyimpan saldo: " + e.message);
+    return;
+  }
   updateSaldo();
 }
 </script>

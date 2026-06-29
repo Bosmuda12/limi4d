@@ -73,6 +73,30 @@ describe("login", () => {
 
     expect(doc._elements["saldo"].innerText).toBe("Saldo: Rp 100000");
   });
+
+  it("should reject empty username and return false", () => {
+    const storage = createMockStorage();
+    const doc = createMockDocument();
+    doc._elements["username"] = { value: "" };
+    doc._elements["saldo"] = { innerText: "" };
+
+    const result = login(storage, doc);
+
+    expect(result).toBe(false);
+    expect(getUser()).toBe("");
+    expect(storage.setItem).not.toHaveBeenCalled();
+  });
+
+  it("should return true on successful login", () => {
+    const storage = createMockStorage();
+    const doc = createMockDocument();
+    doc._elements["username"] = { value: "validuser" };
+    doc._elements["saldo"] = { innerText: "" };
+
+    const result = login(storage, doc);
+
+    expect(result).toBe(true);
+  });
 });
 
 describe("updateSaldo", () => {
@@ -137,6 +161,30 @@ describe("deposit", () => {
     deposit(storage, doc);
 
     expect(doc._elements["saldo"].innerText).toBe("Saldo: Rp 130000");
+  });
+
+  it("should return false when user has no balance in storage", () => {
+    const storage = createMockStorage();
+    const doc = createMockDocument();
+    doc._elements["saldo"] = { innerText: "" };
+    setUser("ghost");
+
+    const result = deposit(storage, doc);
+
+    expect(result).toBe(false);
+    expect(storage.setItem).not.toHaveBeenCalled();
+  });
+
+  it("should return true on successful deposit", () => {
+    const storage = createMockStorage();
+    storage._store["rich"] = "50000";
+    const doc = createMockDocument();
+    doc._elements["saldo"] = { innerText: "" };
+    setUser("rich");
+
+    const result = deposit(storage, doc);
+
+    expect(result).toBe(true);
   });
 });
 
@@ -224,6 +272,18 @@ describe("withdraw", () => {
     const result = withdraw(storage, doc);
 
     expect(result).toBe(false);
+  });
+
+  it("should return false when user has no balance in storage (NaN guard)", () => {
+    const storage = createMockStorage();
+    const doc = createMockDocument();
+    doc._elements["saldo"] = { innerText: "" };
+    setUser("phantom");
+
+    const result = withdraw(storage, doc);
+
+    expect(result).toBe(false);
+    expect(storage.setItem).not.toHaveBeenCalled();
   });
 });
 

@@ -19,35 +19,41 @@
 <script>
 let user = "";
 
+function getSaldo() {
+  return parseInt(localStorage.getItem(user));
+}
+
+function setSaldo(value) {
+  localStorage.setItem(user, value);
+}
+
+function modifySaldo(amount) {
+  let saldo = getSaldo();
+  if (saldo + amount < 0) return alert("Saldo kurang!");
+  setSaldo(saldo + amount);
+  updateSaldo();
+}
+
 function login() {
   user = document.getElementById("username").value;
 
   if (!localStorage.getItem(user)) {
-    localStorage.setItem(user, 100000);
+    setSaldo(100000);
   }
 
   updateSaldo();
 }
 
 function updateSaldo() {
-  let saldo = localStorage.getItem(user);
-  document.getElementById("saldo").innerText = "Saldo: Rp " + saldo;
+  document.getElementById("saldo").innerText = "Saldo: Rp " + getSaldo();
 }
 
 function deposit() {
-  let saldo = parseInt(localStorage.getItem(user));
-  saldo += 10000;
-  localStorage.setItem(user, saldo);
-  updateSaldo();
+  modifySaldo(10000);
 }
 
 function withdraw() {
-  let saldo = parseInt(localStorage.getItem(user));
-  if (saldo < 10000) return alert("Saldo kurang!");
-
-  saldo -= 10000;
-  localStorage.setItem(user, saldo);
-  updateSaldo();
+  modifySaldo(-10000);
 }
 </script>
 

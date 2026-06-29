@@ -1,55 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>App Simple</title>
-</head>
-<body>
+# limi4d
 
-<h2>Login Sederhana</h2>
+A simple browser-based wallet app using localStorage.
 
-<input id="username" placeholder="Username"><br><br>
-<button onclick="login()">Login</button>
+## Features
 
-<h3 id="saldo">Saldo: -</h3>
+- User login with automatic account creation (initial balance Rp 100.000)
+- Deposit and withdraw Rp 10.000
+- Balance persisted in localStorage
 
-<br>
-<button onclick="deposit()">Deposit 10.000</button>
-<button onclick="withdraw()">Withdraw 10.000</button>
+## Usage
 
-<script>
-let user = "";
-
-function login() {
-  user = document.getElementById("username").value;
-
-  if (!localStorage.getItem(user)) {
-    localStorage.setItem(user, 100000);
-  }
-
-  updateSaldo();
-}
-
-function updateSaldo() {
-  let saldo = localStorage.getItem(user);
-  document.getElementById("saldo").innerText = "Saldo: Rp " + saldo;
-}
-
-function deposit() {
-  let saldo = parseInt(localStorage.getItem(user));
-  saldo += 10000;
-  localStorage.setItem(user, saldo);
-  updateSaldo();
-}
-
-function withdraw() {
-  let saldo = parseInt(localStorage.getItem(user));
-  if (saldo < 10000) return alert("Saldo kurang!");
-
-  saldo -= 10000;
-  localStorage.setItem(user, saldo);
-  updateSaldo();
-}
-</script>
-
-</body>
-</html>
+Open `index.html` in a browser, enter a username, and click **Login**.

@@ -6,8 +6,10 @@ import android.os.Handler
 import android.os.Looper
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.ads.MobileAds
 import com.limi4d.mathkids.R
 import com.limi4d.mathkids.databinding.ActivitySplashBinding
+import java.util.concurrent.Executors
 
 class SplashActivity : AppCompatActivity() {
 
@@ -17,6 +19,10 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        Executors.newSingleThreadExecutor().execute {
+            MobileAds.initialize(this) {}
+        }
 
         val bounceAnim = AnimationUtils.loadAnimation(this, R.anim.bounce)
         val fadeInAnim = AnimationUtils.loadAnimation(this, R.anim.fade_in)

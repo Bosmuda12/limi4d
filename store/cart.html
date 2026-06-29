@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keranjang Belanja - TokoKu</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-content">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">🛒</span>
+        <span class="logo-text">TokoKu</span>
+      </a>
+      <nav class="nav">
+        <a href="index.html" class="nav-link">Beranda</a>
+        <a href="admin.html" class="nav-link">Admin</a>
+      </nav>
+      <div class="header-actions">
+        <a href="cart.html" class="cart-link active">
+          🛍️ <span id="cartCount" class="cart-count">0</span>
+        </a>
+      </div>
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html" class="nav-link">Beranda</a>
+      <a href="admin.html" class="nav-link">Admin</a>
+      <a href="cart.html" class="nav-link active">🛍️ Keranjang</a>
+    </div>
+  </header>
+
+  <!-- Cart Section -->
+  <section class="cart-section">
+    <div class="container">
+      <h1 class="page-title">🛍️ Keranjang Belanja</h1>
+
+      <!-- Empty Cart -->
+      <div class="empty-cart" id="emptyCart" style="display:none;">
+        <span class="empty-icon">🛒</span>
+        <h2>Keranjang Anda kosong</h2>
+        <p>Mulai belanja dan temukan produk favorit Anda!</p>
+        <a href="index.html" class="btn btn-primary">Mulai Belanja</a>
+      </div>
+
+      <!-- Cart Content -->
+      <div class="cart-content" id="cartContent">
+        <div class="cart-items" id="cartItems">
+          <!-- Filled by JS -->
+        </div>
+        <div class="cart-summary">
+          <div class="summary-card">
+            <h3>Ringkasan Belanja</h3>
+            <div class="summary-row">
+              <span>Total Produk</span>
+              <span id="totalItems">0 barang</span>
+            </div>
+            <div class="summary-row">
+              <span>Subtotal</span>
+              <span id="subtotal">Rp 0</span>
+            </div>
+            <div class="summary-row">
+              <span>Ongkos Kirim</span>
+              <span id="shipping">Rp 0</span>
+            </div>
+            <div class="summary-divider"></div>
+            <div class="summary-row total">
+              <span>Total</span>
+              <span id="totalPrice">Rp 0</span>
+            </div>
+            <button class="btn btn-primary btn-block" onclick="goToCheckout()">
+              Lanjut ke Checkout
+            </button>
+            <button class="btn btn-whatsapp btn-block" onclick="orderViaWhatsapp()">
+              💬 Pesan via WhatsApp
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 TokoKu. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/cart-page.js"></script>
+</body>
+</html>

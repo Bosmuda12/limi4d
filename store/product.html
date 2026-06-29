@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail Produk - TokoKu</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-content">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">🛒</span>
+        <span class="logo-text">TokoKu</span>
+      </a>
+      <nav class="nav">
+        <a href="index.html" class="nav-link">Beranda</a>
+        <a href="admin.html" class="nav-link">Admin</a>
+      </nav>
+      <div class="header-actions">
+        <a href="cart.html" class="cart-link">
+          🛍️ <span id="cartCount" class="cart-count">0</span>
+        </a>
+      </div>
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html" class="nav-link">Beranda</a>
+      <a href="admin.html" class="nav-link">Admin</a>
+      <a href="cart.html" class="nav-link">🛍️ Keranjang</a>
+    </div>
+  </header>
+
+  <!-- Product Detail -->
+  <section class="product-detail">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">Beranda</a> &gt; <span id="productCategory">Kategori</span> &gt; <span id="productNameBread">Produk</span>
+      </div>
+      <div class="product-detail-grid">
+        <div class="product-image-section">
+          <div class="product-image-main" id="productImage">
+            <div class="product-placeholder-lg">📷</div>
+          </div>
+        </div>
+        <div class="product-info-section">
+          <span class="product-category-badge" id="productCategoryBadge">Kategori</span>
+          <h1 id="productName">Nama Produk</h1>
+          <div class="product-rating">
+            ⭐⭐⭐⭐⭐ <span id="productRating">5.0</span> | <span id="productSold">0</span> terjual
+          </div>
+          <div class="product-price-detail" id="productPrice">Rp 0</div>
+          <p class="product-description" id="productDescription">Deskripsi produk</p>
+          <div class="product-stock">
+            Stok: <span id="productStock" class="stock-badge">0</span>
+          </div>
+          <div class="quantity-selector">
+            <label>Jumlah:</label>
+            <button class="qty-btn" onclick="changeQty(-1)">-</button>
+            <input type="number" id="quantity" value="1" min="1" max="99">
+            <button class="qty-btn" onclick="changeQty(1)">+</button>
+          </div>
+          <div class="product-actions">
+            <button class="btn btn-primary btn-lg" id="addToCartBtn" onclick="addToCartDetail()">
+              🛒 Tambah ke Keranjang
+            </button>
+            <button class="btn btn-success btn-lg" id="buyNowBtn" onclick="buyNow()">
+              ⚡ Beli Sekarang
+            </button>
+          </div>
+          <button class="btn btn-whatsapp" onclick="askViaWhatsapp()">
+            💬 Tanya via WhatsApp
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Products -->
+  <section class="products">
+    <div class="container">
+      <h2 class="section-title">Produk Terkait</h2>
+      <div class="product-grid" id="relatedProducts"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 TokoKu. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/6281234567890" target="_blank" class="whatsapp-float">
+    💬 Chat WhatsApp
+  </a>
+
+  <script src="js/data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/product.js"></script>
+</body>
+</html>

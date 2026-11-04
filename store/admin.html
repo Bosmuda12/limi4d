@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel - TokoKu</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header header-admin">
+    <div class="container header-content">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">🛒</span>
+        <span class="logo-text">TokoKu</span>
+        <span class="admin-badge">ADMIN</span>
+      </a>
+      <nav class="nav">
+        <a href="index.html" class="nav-link">Lihat Toko</a>
+        <a href="admin.html" class="nav-link active">Kelola Produk</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Admin Section -->
+  <section class="admin-section">
+    <div class="container">
+      <h1 class="page-title">⚙️ Panel Admin</h1>
+
+      <!-- Stats -->
+      <div class="admin-stats">
+        <div class="stat-card">
+          <span class="stat-icon">📦</span>
+          <div class="stat-info">
+            <h3 id="totalProducts">0</h3>
+            <p>Total Produk</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-icon">📋</span>
+          <div class="stat-info">
+            <h3 id="totalOrders">0</h3>
+            <p>Total Pesanan</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-icon">💰</span>
+          <div class="stat-info">
+            <h3 id="totalRevenue">Rp 0</h3>
+            <p>Total Pendapatan</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-icon">📂</span>
+          <div class="stat-info">
+            <h3 id="totalCategories">0</h3>
+            <p>Kategori</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add Product Form -->
+      <div class="admin-card">
+        <h2 id="formTitle">➕ Tambah Produk Baru</h2>
+        <form id="productForm" onsubmit="saveProduct(event)">
+          <input type="hidden" id="editId" value="">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="prodName">Nama Produk *</label>
+              <input type="text" id="prodName" placeholder="Nama produk" required>
+            </div>
+            <div class="form-group">
+              <label for="prodCategory">Kategori *</label>
+              <select id="prodCategory" required>
+                <option value="">Pilih kategori</option>
+                <option value="fashion">Fashion</option>
+                <option value="elektronik">Elektronik</option>
+                <option value="makanan">Makanan</option>
+                <option value="aksesoris">Aksesoris</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="prodPrice">Harga (Rp) *</label>
+              <input type="number" id="prodPrice" placeholder="50000" min="0" required>
+            </div>
+            <div class="form-group">
+              <label for="prodStock">Stok *</label>
+              <input type="number" id="prodStock" placeholder="100" min="0" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="prodDesc">Deskripsi</label>
+            <textarea id="prodDesc" rows="3" placeholder="Deskripsi produk..."></textarea>
+          </div>
+          <div class="form-group">
+            <label for="prodImage">URL Gambar (opsional)</label>
+            <input type="url" id="prodImage" placeholder="https://contoh.com/gambar.jpg">
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">💾 Simpan Produk</button>
+            <button type="button" class="btn btn-secondary" onclick="resetForm()">Batal</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Product List -->
+      <div class="admin-card">
+        <div class="admin-card-header">
+          <h2>📦 Daftar Produk</h2>
+          <input type="text" id="adminSearch" placeholder="Cari produk..." onkeyup="searchAdminProducts()">
+        </div>
+        <div class="table-wrapper">
+          <table class="admin-table" id="productTable">
+            <thead>
+              <tr>
+                <th>Produk</th>
+                <th>Kategori</th>
+                <th>Harga</th>
+                <th>Stok</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="productTableBody">
+              <!-- Filled by JS -->
+            </tbody>
+          </table>
+        </div>
+        <p class="empty-message" id="adminEmpty" style="display:none;">Belum ada produk. Tambahkan produk pertama Anda!</p>
+      </div>
+
+      <!-- Orders List -->
+      <div class="admin-card">
+        <h2>📋 Daftar Pesanan</h2>
+        <div class="table-wrapper">
+          <table class="admin-table" id="orderTable">
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Pelanggan</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Tanggal</th>
+              </tr>
+            </thead>
+            <tbody id="orderTableBody">
+              <!-- Filled by JS -->
+            </tbody>
+          </table>
+        </div>
+        <p class="empty-message" id="orderEmpty" style="display:none;">Belum ada pesanan.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 TokoKu. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
